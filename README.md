@@ -1,3 +1,5 @@
+geo-test-app.herokuapp.com
+
 Endpoints:
 api/            - show geo-data current device
 
