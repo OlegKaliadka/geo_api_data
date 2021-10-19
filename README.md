@@ -9,10 +9,11 @@ api/token/      - access token
 
 api/refresh_token/     - refresh token
 
-ip/ip_input/     - show geo-data inputed ip
+api/ip/ip_input/     - show geo-data inputed ip
 
-register/        
+api/register/        
 
-profile/         - show geo-data current user
+api/profile/         - show geo-data current user
 
 P.S. allowany from 'AllUsersView' just for simple testing
+
