@@ -12,3 +12,5 @@ ip/ip_input/     - show geo-data inputed ip
 register/        
 
 profile/         - show geo-data current user
+
+P.S. allowany from 'AllUsersView' just for simple testing
