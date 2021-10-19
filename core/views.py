@@ -1,9 +1,6 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from rest_framework import generics, permissions, viewsets
-from django.http import HttpResponse
-from ipware import get_client_ip
-from datetime import datetime
 from .serializers import UserDataSerializer, RegisterSerializer, UserSerializer
 from .models import UserModel
 from rest_framework.response import Response
@@ -46,19 +43,56 @@ def get_geolocation(request):
     )
     saveNow.save()
     api_response = {
-        'ip': ip
+        'ip': ip,
+        'continent_name': continent_name,
+        'country_name': country_name,
+        'region_name': region_name,
+        'zip': zip,
+        'latitude': latitude,
+        'longitude': longitude,
+    }
+    return JsonResponse(api_response)
+
+
+def get_geolocation_input_ip(request, ip_input):
+    access_key = 'd479f51305bbe0eface1532fecf88001'
+    url = f"http://api.ipstack.com/{ip_input}?access_key={access_key}"
+    response = requests.get(url)
+    response.raise_for_status()
+    rawData = response.json()
+    ip = rawData['ip']
+    continent_name = rawData['continent_name']
+    country_name = rawData['country_name']
+    region_name = rawData['region_name']
+    city = rawData['city']
+    zip = rawData['zip']
+    latitude = rawData['latitude']
+    longitude = rawData['longitude']
+    saveNow = UserModel(
+        ip=ip,
+        continent_name=continent_name,
+        country_name=country_name,
+        region_name=region_name,
+        city=city,
+        zip=zip,
+        latitude=latitude,
+        longitude=longitude,
+    )
+    saveNow.save()
+    api_response = {
+        'ip': ip,
+        'continent_name': continent_name,
+        'country_name': country_name,
+        'region_name': region_name,
+        'zip': zip,
+        'latitude': latitude,
+        'longitude': longitude,
     }
     return JsonResponse(api_response)
 
 
 class AllUsersView(viewsets.ModelViewSet):
     queryset = UserModel.objects.all()
-    serializer_class = UserDataSerializer
-    permission_classes = [permissions.AllowAny]
-
-
-class GetUserView(generics.ListAPIView):
-    queryset = UserModel.objects.filter(ip='178.37.246.111')
     serializer_class = UserDataSerializer
     permission_classes = [permissions.AllowAny]
 

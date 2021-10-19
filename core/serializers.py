@@ -28,7 +28,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         password = validated_data["password"]
         password2 = validated_data["password2"]
         if password != password2:
-            raise serializers.ValidationError({"password": "Пароли не совпадают"})
+            raise serializers.ValidationError({"password": "password error"})
         user = User(username=username)
         user.set_password(password)
         user.save()
