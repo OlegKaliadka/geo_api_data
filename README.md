@@ -9,7 +9,7 @@ api/token/      - access token
 
 api/refresh_token/     - refresh token
 
-api/ip/ip_input/     - show geo-data inputed ip
+api/ip/<ip_input>/     - show geo-data inputed ip
 
 api/register/        
 
