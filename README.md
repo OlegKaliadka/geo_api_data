@@ -1,7 +1,7 @@
 geo-test-app.herokuapp.com
 
 Endpoints:
-api/            - show geo-data current device
+api/            - show and save in db geo-data current device
 
 api/users/      - all geo-data from db
 
