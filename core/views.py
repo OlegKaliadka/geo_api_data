@@ -32,7 +32,6 @@ def get_geolocation(request):
     latitude = rawData['latitude']
     longitude = rawData['longitude']
     saveNow = UserModel(
-        ip=ip,
         continent_name=continent_name,
         country_name=country_name,
         region_name=region_name,
@@ -43,7 +42,6 @@ def get_geolocation(request):
     )
     saveNow.save()
     api_response = {
-        'ip': ip,
         'continent_name': continent_name,
         'country_name': country_name,
         'region_name': region_name,
@@ -69,7 +67,6 @@ def get_geolocation_input_ip(request, ip_input):
     latitude = rawData['latitude']
     longitude = rawData['longitude']
     saveNow = UserModel(
-        ip=ip,
         continent_name=continent_name,
         country_name=country_name,
         region_name=region_name,
@@ -80,7 +77,6 @@ def get_geolocation_input_ip(request, ip_input):
     )
     saveNow.save()
     api_response = {
-        'ip': ip,
         'continent_name': continent_name,
         'country_name': country_name,
         'region_name': region_name,
